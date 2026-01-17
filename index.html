@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Streak & Rewards</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="top">
+        <h1>Streak & Rewards</h1>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="label">Cash</div>
+            <div class="value" id="cash">£0</div>
+          </div>
+          <div class="stat">
+            <div class="label">Streak</div>
+            <div class="value" id="streak">0</div>
+          </div>
+        </div>
+      </header>
+
+      <section class="tasks">
+        <h2>Tasks</h2>
+        <div class="task-grid" id="taskGrid">
+          <button class="task" data-task="Drink Water">Drink Water</button>
+          <button class="task" data-task="Read 10 min">Read 10 min</button>
+          <button class="task" data-task="Walk 5 min">Walk 5 min</button>
+        </div>
+        <p class="selected">
+          Selected: <strong id="selectedTask">None</strong>
+        </p>
+      </section>
+
+      <section class="actions">
+        <button class="complete" id="completeBtn" disabled>
+          Complete Task
+        </button>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
