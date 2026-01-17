@@ -39,3 +39,10 @@ completeBtn.addEventListener("click", () => {
 });
 
 render();
+const resetBtn = document.getElementById("resetBtn");
+resetBtn.addEventListener("click", () => {
+  cash = 0;
+  streak = 0;
+  save();
+  render();
+});
