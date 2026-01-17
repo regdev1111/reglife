@@ -7,6 +7,7 @@ const cashEl = document.getElementById("cash");
 const streakEl = document.getElementById("streak");
 const selectedTaskEl = document.getElementById("selectedTask");
 const completeBtn = document.getElementById("completeBtn");
+const resetBtn = document.getElementById("resetBtn");
 const taskButtons = document.querySelectorAll(".task");
 
 function save() {
@@ -38,11 +39,11 @@ completeBtn.addEventListener("click", () => {
   render();
 });
 
-render();
-const resetBtn = document.getElementById("resetBtn");
 resetBtn.addEventListener("click", () => {
   cash = 0;
   streak = 0;
   save();
   render();
 });
+
+render();
