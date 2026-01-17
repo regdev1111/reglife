@@ -33,6 +33,12 @@ taskButtons.forEach((btn) => {
 });
 
 completeBtn.addEventListener("click", () => {
+  if (selectedTask === "2-Minute Puzzle") {
+    startPuzzle();
+    return; // don’t award cash/streak yet — puzzle completion will do that later
+  }
+
+  // normal task reward
   cash += 10;
   streak += 1;
   save();
@@ -51,7 +57,17 @@ render();
 
 const puzzleGrid = document.getElementById("puzzleGrid");
 const puzzleStatus = document.getElementById("puzzleStatus");
-const startPuzzleBtn = document.getElementById("startPuzzleBtn");
+
+function startPuzzle() {
+  puzzleActive = true;
+  nextNumber = 1;
+  puzzleStatus.textContent = "Go! Tap 1 → 20 in order.";
+  buildPuzzleGrid();
+
+  // nice on mobile: jump down to the puzzle
+  document.getElementById("puzzleSection").scrollIntoView({ behavior: "smooth" });
+}
+
 
 let puzzleActive = false;
 let nextNumber = 1;
