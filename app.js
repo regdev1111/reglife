@@ -1,5 +1,6 @@
-let cash = 0;
-let streak = 0;
+// ----- Load saved data (or start fresh) -----
+let cash = Number(localStorage.getItem("cash")) || 0;
+let streak = Number(localStorage.getItem("streak")) || 0;
 let selectedTask = null;
 
 const cashEl = document.getElementById("cash");
@@ -7,6 +8,11 @@ const streakEl = document.getElementById("streak");
 const selectedTaskEl = document.getElementById("selectedTask");
 const completeBtn = document.getElementById("completeBtn");
 const taskButtons = document.querySelectorAll(".task");
+
+function save() {
+  localStorage.setItem("cash", String(cash));
+  localStorage.setItem("streak", String(streak));
+}
 
 function render() {
   cashEl.textContent = `£${cash}`;
@@ -26,11 +32,9 @@ taskButtons.forEach((btn) => {
 });
 
 completeBtn.addEventListener("click", () => {
-  // simple rewards for now
   cash += 10;
   streak += 1;
-
-  // keep the selected task (so you can tap Complete repeatedly)
+  save();
   render();
 });
 
