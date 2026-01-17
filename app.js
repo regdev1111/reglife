@@ -57,20 +57,44 @@ render();
 
 const puzzleGrid = document.getElementById("puzzleGrid");
 const puzzleStatus = document.getElementById("puzzleStatus");
+const puzzleTimer = document.getElementById("puzzleTimer");
+
 
 function startPuzzle() {
+  // start puzzle state
   puzzleActive = true;
   nextNumber = 1;
   puzzleStatus.textContent = "Go! Tap 1 → 20 in order.";
   buildPuzzleGrid();
 
-  // nice on mobile: jump down to the puzzle
+  // start timer
+  stopTimer();
+  timeLeft = 120;
+  puzzleTimer.textContent = formatTime(timeLeft);
+
+  timerId = setInterval(() => {
+    timeLeft -= 1;
+    puzzleTimer.textContent = formatTime(timeLeft);
+
+    if (timeLeft <= 0) {
+      stopTimer();
+      puzzleActive = false;
+      puzzleStatus.textContent = "⏱️ Time’s up! Try again.";
+      // leave grid visible but inactive
+    }
+  }, 1000);
+
+  // mobile-friendly: jump to puzzle
   document.getElementById("puzzleSection").scrollIntoView({ behavior: "smooth" });
 }
 
 
+
 let puzzleActive = false;
 let nextNumber = 1;
+let timeLeft = 120;       // seconds
+let timerId = null;
+
 
 function shuffle(array) {
   // Fisher–Yates shuffle
@@ -80,6 +104,20 @@ function shuffle(array) {
   }
   return array;
 }
+
+function formatTime(seconds) {
+  const m = Math.floor(seconds / 60);
+  const s = seconds % 60;
+  return `${m}:${String(s).padStart(2, "0")}`;
+}
+
+function stopTimer() {
+  if (timerId) {
+    clearInterval(timerId);
+    timerId = null;
+  }
+}
+
 
 function buildPuzzleGrid() {
   puzzleGrid.innerHTML = "";
@@ -102,10 +140,11 @@ function buildPuzzleGrid() {
         nextNumber += 1;
 
         if (nextNumber === 21) {
-          puzzleStatus.textContent = "✅ Puzzle complete! (Timer comes next)";
+          stopTimer();
           puzzleActive = false;
-          startPuzzleBtn.disabled = false;
-        } else {
+          puzzleStatus.textContent = "✅ DAMN! You da man (Rewards next)";
+        }
+ else {
           puzzleStatus.textContent = `Good! Next: ${nextNumber}`;
         }
       } else {
