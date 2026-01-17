@@ -199,3 +199,10 @@ body {
   background: rgba(239, 68, 68, 0.35);
   border-color: rgba(239, 68, 68, 0.9);
 }
+.hero-avatar {
+  display: block;
+  width: min(220px, 60vw);
+  height: auto;
+  margin: 10px auto 6px;
+  filter: drop-shadow(0 18px 26px rgba(0, 0, 0, 0.35));
+}
