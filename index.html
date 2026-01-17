@@ -11,6 +11,14 @@
       <header class="top">
         <h1>Welcome to Reglife!</h1>
 
+        <!-- Avatar (transparent PNG) -->
+        <img
+          src="avatar.png"
+          class="hero-avatar"
+          alt="Reglife avatar"
+          loading="eager"
+        />
+
         <div class="stats">
           <div class="stat">
             <div class="label">Cash</div>
@@ -30,39 +38,31 @@
           <button class="task" data-task="Bug Arlo">Bug Arlo</button>
           <button class="task" data-task="10 push-ups">10 push-ups</button>
           <button class="task" data-task="2-Minute Puzzle">2-Minute Puzzle</button>
-
         </div>
         <p class="selected">
           Selected: <strong id="selectedTask">None</strong>
         </p>
       </section>
 
-<section class="actions">
-  <button class="complete" id="completeBtn" disabled>
-    Complete Task
-  </button>
+      <section class="actions">
+        <button class="complete" id="completeBtn" disabled>Complete Task</button>
 
-  <button class="reset" id="resetBtn" type="button">
-    Reset
-  </button>
-</section>
+        <button class="reset" id="resetBtn" type="button">Reset</button>
+      </section>
 
-<section class="puzzle" id="puzzleSection">
-  <h2>2-Minute Puzzle</h2>
+      <section class="puzzle" id="puzzleSection">
+        <h2>2-Minute Puzzle</h2>
 
-  <div class="puzzle-bar">
+        <div class="puzzle-bar">
+          <div class="puzzle-timer" id="puzzleTimer">2:00</div>
+        </div>
 
+        <p class="puzzle-status" id="puzzleStatus">
+          Select “2-Minute Puzzle” then tap “Complete Task” to start.
+        </p>
 
-    <div class="puzzle-timer" id="puzzleTimer">2:00</div>
-  </div>
-
-  <p class="puzzle-status" id="puzzleStatus">
-    Tap Start to begin. Then tap numbers in order: 1 → 20.
-  </p>
-
-  <div class="puzzle-grid" id="puzzleGrid" aria-label="Puzzle grid"></div>
-</section>
-
+        <div class="puzzle-grid" id="puzzleGrid" aria-label="Puzzle grid"></div>
+      </section>
     </main>
 
     <script src="app.js"></script>
